@@ -1,4 +1,4 @@
-# /split — Split Personality Analysis
+# Split into multiple personalities that debate each other before responding
 
 <command_purpose>
 Split into multiple brilliant, opinionated personalities. They each react to your work independently, clash where they disagree, get one round to fight it out, and deliver a sharp synthesis.
