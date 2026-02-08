@@ -11,7 +11,7 @@ A Claude Code plugin that splits into multiple famous, opinionated personalities
 
 Then restart Claude Code.
 
-<img src="split.jpg" alt="Split" width="600" />
+<img src="split-img-small.png" alt="Split" width="600" />
 
 ## Usage
 
