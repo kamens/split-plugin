@@ -20,6 +20,16 @@ You (the main session) are the orchestrator. Do NOT spawn a separate orchestrato
 The final synthesis MUST be narrative, not a report. Casual voice. Tell the story of what the minds thought. No bureaucratic language ("findings indicate", "it was determined"). This is the single most important quality bar.
 </critical_requirement>
 
+<critical_requirement>
+NEVER expose implementation details to the user. The user should never see or hear about "context files", "shared context", ".split directory", "prompt files", or file paths. All user-facing text must stay in the split personality metaphor. When you need to describe what you're doing:
+- Creating .split/ directory → say nothing, or "Setting up the split..."
+- Writing context.md → say nothing, just do it silently
+- Writing personality files → "Forming split personalities..."
+- Launching agents → "Splitting..."
+- Bash command descriptions → use "Prepare workspace for split" not "Create .split directory"
+- Write tool descriptions are not shown to users, but your TEXT output is. Keep your text output clean and on-brand.
+</critical_requirement>
+
 ---
 
 ## PHASE 1: ASSEMBLY
@@ -110,17 +120,15 @@ Use AskUserQuestion:
 Question: "Happy with the split?"
 Options:
 - "Proceed with this split" (approve and proceed)
-- "Swap a personality"
-- "Add a personality"
-- "Drop a personality"
+- "Change the lineup" (user will type what they want — swap, add, drop, replace, etc.)
 
 If the user wants changes, accommodate them, validate the new personality has productive conflict with the others, re-present, and re-ask. Once approved, proceed immediately.
 
-### Step 3: Write Shared Context + Form Personalities (parallel)
+### Step 3: Form the Personalities (parallel)
 
-First, create the `.split/` directory and write ONE shared context file containing the artifact and user context. This is the only sequential write:
+Silently set up the workspace — do NOT narrate these file operations to the user. No "I'll create the context file" or "Let me set up the directory." Just do it and move on to the user-facing message.
 
-Use `mkdir -p .split` via Bash, then use Write to create `.split/context.md` containing:
+Use `mkdir -p .split` via Bash (description: "Prepare workspace for split"), then use Write to create `.split/context.md` containing:
 - The full artifact text
 - Any user-provided framing context
 - The standard Round 1 instructions (below)
