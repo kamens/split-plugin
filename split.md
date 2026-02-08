@@ -109,37 +109,31 @@ Use AskUserQuestion:
 
 Question: "Happy with the split?"
 Options:
-- "Split me" (approve and proceed)
+- "Proceed with this split" (approve and proceed)
 - "Swap a personality"
 - "Add a personality"
 - "Drop a personality"
 
 If the user wants changes, accommodate them, validate the new personality has productive conflict with the others, re-present, and re-ask. Once approved, proceed immediately.
 
-### Step 3: Build Prompts
+### Step 3: Write Shared Context + Form Personalities (parallel)
 
-<thinking>
-For each mind, think through:
-1. What are this thinker's 3-5 core beliefs that are SPECIFIC (not generic expertise)?
-2. What do they specifically DISLIKE or argue against?
-3. How do they evaluate work — what's their decision framework?
-4. What's their voice like — direct, academic, passionate, dry?
-5. What specific parts of THIS artifact will trigger their strongest reaction?
-6. What pointed question can I ask that forces them to engage with the artifact's specific choices, not philosophize generically?
-</thinking>
+First, create the `.split/` directory and write ONE shared context file containing the artifact and user context. This is the only sequential write:
 
-Each mind's prompt must contain:
-1. **Personality** — Core philosophy, specific opinions, dislikes, evaluation framework, voice, instruction to reference the artifact
-2. **Artifact** — The full artifact text
-3. **User context** — Any framing the user provided
-4. **Assignment** — Tailored, pointed questions referencing specific parts of the artifact
-5. **Instructions** — Append the following to every mind's prompt:
+Use `mkdir -p .split` via Bash, then use Write to create `.split/context.md` containing:
+- The full artifact text
+- Any user-provided framing context
+- The standard Round 1 instructions (below)
+
+Standard instructions to include in `.split/context.md`:
 
 ```
-You're one of several minds examining this artifact right now. The others
-are looking at it from completely different angles. After this round, you'll
-hear what they think and get one chance to respond — push back on them,
-agree, or update your take.
+## Instructions
+
+You're one of several split personalities examining this artifact right now.
+The others are looking at it from completely different angles. After this
+round, you'll hear what they think and get one chance to respond — push
+back on them, agree, or update your take.
 
 For now: give your honest, unfiltered reaction to this artifact. Be specific.
 Point to exact phrases, sentences, or structural choices. Don't hedge. Say
@@ -153,21 +147,38 @@ Structure your response as:
 5. Secondary recommendations (if any)
 
 Keep your response focused and under 500 words. This is a reaction, not an essay.
-
-IMPORTANT: You are doing research/analysis only. Do NOT use any file editing tools.
-Only use Read tools if you need to examine referenced files. Your output is your
-written analysis — just respond with your reaction as text.
 ```
 
-<critical_requirement>
-You MUST construct ALL prompts BEFORE launching any agents. To confirm you've done this, output a single short line listing the minds — nothing else. No prompt contents, no explanations, no "here's what I built." Just:
+Then show:
 
 ```
-Split personalities ready: OGILVY, GODIN, DUNFORD, SCHWARTZ
+Forming split personalities...
 ```
 
-This checkpoint ensures all prompts are materialized before any Task calls. Do NOT print the prompt contents themselves.
-</critical_requirement>
+And launch parallel agents to build each personality file simultaneously:
+
+<parallel_tasks>
+
+Run ALL of these agents at the same time in a SINGLE response:
+
+1. Task general-purpose("Build personality file for [NAME1]. Read .split/context.md for the artifact. Then write .split/[name1].md containing: (1) a detailed personality profile for [NAME1] — their core philosophy, 3-5 specific opinions, what they dislike, their evaluation framework, their voice/style, and an explicit instruction to reference the specific artifact; (2) tailored questions pointing [NAME1] at specific parts of the artifact that will trigger their strongest reaction. Do NOT include the artifact text — just the personality and questions. Keep it focused.", model: sonnet) — "[NAME1] personality forming"
+2. Task general-purpose("Build personality file for [NAME2]. Read .split/context.md for the artifact. Then write .split/[name2].md containing: (1) a detailed personality profile for [NAME2] — their core philosophy, 3-5 specific opinions, what they dislike, their evaluation framework, their voice/style, and an explicit instruction to reference the specific artifact; (2) tailored questions pointing [NAME2] at specific parts of the artifact that will trigger their strongest reaction. Do NOT include the artifact text — just the personality and questions. Keep it focused.", model: sonnet) — "[NAME2] personality forming"
+3. Task general-purpose("Build personality file for [NAME3]. Read .split/context.md for the artifact. Then write .split/[name3].md containing: (1) a detailed personality profile for [NAME3] — their core philosophy, 3-5 specific opinions, what they dislike, their evaluation framework, their voice/style, and an explicit instruction to reference the specific artifact; (2) tailored questions pointing [NAME3] at specific parts of the artifact that will trigger their strongest reaction. Do NOT include the artifact text — just the personality and questions. Keep it focused.", model: sonnet) — "[NAME3] personality forming"
+4. Task general-purpose("Build personality file for [NAME4]. Read .split/context.md for the artifact. Then write .split/[name4].md containing: (1) a detailed personality profile for [NAME4] — their core philosophy, 3-5 specific opinions, what they dislike, their evaluation framework, their voice/style, and an explicit instruction to reference the specific artifact; (2) tailored questions pointing [NAME4] at specific parts of the artifact that will trigger their strongest reaction. Do NOT include the artifact text — just the personality and questions. Keep it focused.", model: sonnet) — "[NAME4] personality forming"
+
+ALL Task tool calls must be in this SINGLE response.
+
+</parallel_tasks>
+
+<critical_instruction>
+Once all personality formation agents return, do NOT verify the files exist. Do NOT run any Bash commands, test commands, or Read tools to check the files. The agents wrote them — trust the result and move on immediately.
+</critical_instruction>
+
+Once all personality agents return, show:
+
+```
+Split personalities ready: [NAME1], [NAME2], [NAME3], [NAME4]
+```
 
 ---
 
@@ -175,25 +186,27 @@ This checkpoint ensures all prompts are materialized before any Task calls. Do N
 
 ### Step 4: Round 1 — The Split
 
-Immediately after the checkpoint line above, show the progress message and launch all agents in the SAME response:
+Show the progress message and launch all reaction agents in the SAME response:
 
 ```
 Splitting...
 ```
 
-Then launch all personalities:
+Each agent gets a tiny prompt that reads BOTH files — the shared context (artifact) and their personality. This is what makes parallel execution reliable — the Task calls are small and identical in structure.
 
 <parallel_tasks>
 
 Run ALL of these agents at the same time in a SINGLE response:
 
-1. Task general-purpose(Personality 1 prompt, model: sonnet) — "[NAME] reacting"
-2. Task general-purpose(Personality 2 prompt, model: sonnet) — "[NAME] reacting"
-3. Task general-purpose(Personality 3 prompt, model: sonnet) — "[NAME] reacting"
-4. Task general-purpose(Personality 4 prompt, model: sonnet) — "[NAME] reacting"
+1. Task general-purpose("Read .split/context.md for the artifact and instructions, then read .split/[name1].md for your personality and assignment. React to the artifact in character. Return your complete reaction as text.", model: sonnet) — "[NAME1] reacting"
+2. Task general-purpose("Read .split/context.md for the artifact and instructions, then read .split/[name2].md for your personality and assignment. React to the artifact in character. Return your complete reaction as text.", model: sonnet) — "[NAME2] reacting"
+3. Task general-purpose("Read .split/context.md for the artifact and instructions, then read .split/[name3].md for your personality and assignment. React to the artifact in character. Return your complete reaction as text.", model: sonnet) — "[NAME3] reacting"
+4. Task general-purpose("Read .split/context.md for the artifact and instructions, then read .split/[name4].md for your personality and assignment. React to the artifact in character. Return your complete reaction as text.", model: sonnet) — "[NAME4] reacting"
 
+The prompts above are TINY on purpose. All the real content is in the files.
+Do NOT embed personality prompts or artifact text in the Task calls.
 Do NOT launch one agent and wait before launching the next.
-ALL Task tool calls must be in this SINGLE response alongside the progress message.
+ALL Task tool calls must be in this SINGLE response.
 
 </parallel_tasks>
 
@@ -346,18 +359,18 @@ Use direct quotes when sharp.]
 pushed back, who conceded and why. Practical upshot in a blockquote.]
 [Skip if no clashes.]
 
-## They couldn't agree on this (your call)
+## Still split (your call)
 [For unresolved clashes: both positions honestly. The deciding factor.]
 [Skip if all resolved or no clashes.]
 
-## Questions they raised that you should answer
+## Questions the personalities need you to answer
 [Numbered list of open questions.]
 [Skip if none.]
 
 ## What to do next
 [Full prioritized action list. Each traceable to which mind(s).]
 
-## Raw reactions
+## Each personality's raw take
 ### [MIND 1 NAME]
 [Their full Round 1 reaction, lightly edited for readability]
 
@@ -371,14 +384,14 @@ pushed back, who conceded and why. Practical upshot in a blockquote.]
 ```
 
 **Tone rules for the detailed file:**
-- Casual, confident, a little playful
-- Reference minds by name as characters ("Ogilvy went after your headline...")
-- Use direct quotes from the minds when they said something sharp
-- Tell the story of disagreements narratively ("Godin softened when pressed...")
+- Casual, confident, a little playful — like the personalities are fragments of one mind arguing with itself
+- Reference personalities by name as characters ("Ogilvy went after your headline...")
+- Use direct quotes from the personalities when they said something sharp
+- Tell the story of the split narratively ("Godin softened when pressed...")
 
 After writing, tell the user:
 ```
-Full deep-dive saved to split-analysis.md
+Full personality breakdown saved to split-analysis.md
 ```
 
 ---
