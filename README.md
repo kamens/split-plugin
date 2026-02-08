@@ -32,26 +32,39 @@ Give it anything — a file path, a URL, pasted text, or just describe what you 
 ```
 /split please have puzzle experts review my prompt for creating crossword clues
 ```
-> Splitting into 4 personalities...
->
-> **WILL SHORTZ** — legendary NYT crossword editor. Will judge clue craft, wordplay quality, and solver satisfaction.
-> **MARIA MONTESSORI** — child development pioneer. Will scrutinize age-appropriateness and learning value.
-> **SIMON SINEK** — clarity-of-purpose evangelist. Will question whether the prompt communicates intent effectively to the LLM.
-> **MERL REAGLE** — beloved puzzle constructor known for fun and accessibility. Will push for more playfulness and better clue variety.
+```
+Splitting into 4 personalities...
+
+WILL SHORTZ — legendary NYT crossword editor. Will judge clue craft,
+wordplay quality, and solver satisfaction.
+MARIA MONTESSORI — child development pioneer. Will scrutinize
+age-appropriateness and learning value.
+SIMON SINEK — clarity-of-purpose evangelist. Will question whether the
+prompt communicates intent effectively to the LLM.
+MERL REAGLE — beloved puzzle constructor known for fun and accessibility.
+Will push for more playfulness and better clue variety.
+```
 
 **Analyzing a landing page from a screenshot:**
 
 ```
 /split need ecommerce/conversion/marketing expert analysis of this landing page screenshot
 ```
-> Splitting into 4 personalities...
->
-> **DAVID OGILVY** — proof-obsessed ad man. Will demand more evidence, testimonials, and a longer persuasion path.
-> **SETH GODIN** — tribes evangelist. Will ask who this is really for and whether it's remarkable enough to spread.
-> **APRIL DUNFORD** — positioning nerd. Will scrutinize competitive context and whether the value prop is clear.
-> **JOANNA WIEBE** — conversion copywriter (Copyhackers). Will tear apart the CTA hierarchy, microcopy, and friction points.
->
-> Fault lines: proof density vs. clean design | broad vs. niche audience | copy length vs. scannability | two CTAs
+```
+Splitting into 4 personalities...
+
+DAVID OGILVY — proof-obsessed ad man. Will demand more evidence,
+testimonials, and a longer persuasion path.
+SETH GODIN — tribes evangelist. Will ask who this is really for and
+whether it's remarkable enough to spread.
+APRIL DUNFORD — positioning nerd. Will scrutinize competitive context
+and whether the value prop is clear.
+JOANNA WIEBE — conversion copywriter (Copyhackers). Will tear apart
+the CTA hierarchy, microcopy, and friction points.
+
+Fault lines: proof density vs. clean design | broad vs. niche audience |
+copy length vs. scannability | two CTAs
+```
 
 You approve the lineup (or swap personalities), then the split runs and delivers a synthesis.
 
