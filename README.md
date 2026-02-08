@@ -25,7 +25,7 @@ Then restart Claude Code.
 
 Give it anything — a file path, a URL, pasted text, or just describe what you want reviewed and it'll search your codebase to find it.
 
-## Examples
+## Example personalities
 
 **Reviewing a crossword prompt:**
 
