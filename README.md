@@ -16,20 +16,51 @@ Then restart Claude Code.
 ## Usage
 
 ```
-/split:split path/to/draft.md
-/split:split https://example.com/landing-page
-/split:split please review the pricing strategy doc in this repo
-/split:split <paste your text directly>
+/split please have puzzle experts review my prompt for creating crossword clues
+/split please give me blog feedback on this draft post: https://kamens.com/blog/generating-custom-mazes-with-ai
+/split please review the pricing strategy doc in this repo
+/split need ecommerce/marketing/conversion experts to analyze my landing page for elbobooks.com [PASTED IMAGE]
+/split <paste your text directly>
 ```
 
 Give it anything — a file path, a URL, pasted text, or just describe what you want reviewed and it'll search your codebase to find it.
 
+## Examples
+
+**Reviewing a crossword prompt:**
+
+```
+/split please have puzzle experts review my prompt for creating crossword clues
+```
+> Splitting into 4 personalities...
+>
+> **WILL SHORTZ** — legendary NYT crossword editor. Will judge clue craft, wordplay quality, and solver satisfaction.
+> **MARIA MONTESSORI** — child development pioneer. Will scrutinize age-appropriateness and learning value.
+> **SIMON SINEK** — clarity-of-purpose evangelist. Will question whether the prompt communicates intent effectively to the LLM.
+> **MERL REAGLE** — beloved puzzle constructor known for fun and accessibility. Will push for more playfulness and better clue variety.
+
+**Analyzing a landing page from a screenshot:**
+
+```
+/split need ecommerce/conversion/marketing expert analysis of this landing page screenshot
+```
+> Splitting into 4 personalities...
+>
+> **DAVID OGILVY** — proof-obsessed ad man. Will demand more evidence, testimonials, and a longer persuasion path.
+> **SETH GODIN** — tribes evangelist. Will ask who this is really for and whether it's remarkable enough to spread.
+> **APRIL DUNFORD** — positioning nerd. Will scrutinize competitive context and whether the value prop is clear.
+> **JOANNA WIEBE** — conversion copywriter (Copyhackers). Will tear apart the CTA hierarchy, microcopy, and friction points.
+>
+> Fault lines: proof density vs. clean design | broad vs. niche audience | copy length vs. scannability | two CTAs
+
+You approve the lineup (or swap personalities), then the split runs and delivers a synthesis.
+
 ## How it works
 
-1. **Assembly** — Analyzes your artifact, identifies tension axes, picks 3-5 real thinkers who will productively clash (Ogilvy vs Godin, Thiel vs Ries, etc.)
-2. **The Split** — Launches all personalities in parallel. Each reacts independently with specific, artifact-grounded feedback.
-3. **The Fight** — Spots true clashes between personalities. Brings them back for one round to concede, push back, or evolve.
-4. **Delivery** — Synthesizes everything into a tight summary with prioritized actions. Optionally saves the full debate to a file.
+1. **Pick personalities** — Picks 3-5 famous, opinionated thinkers whose views are relevant to your work and who will genuinely disagree with each other. Reviewing a landing page? You might get Ogilvy, Godin, and Dunford. Pricing strategy? Thiel vs Ries. Each personality is deeply researched and built to react in character.
+2. **Split personalities** — Launches all personalities in parallel. Each reacts independently with specific, artifact-grounded feedback.
+3. **Debate conclusions** — Spots true clashes between personalities. Brings them back for one round to concede, push back, or evolve.
+4. **Synthesize results** — Synthesizes everything into a tight summary with prioritized actions. Optionally saves the full debate to a file.
 
 ## Design
 
