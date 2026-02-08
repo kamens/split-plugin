@@ -25,6 +25,13 @@ Then restart Claude Code.
 
 Give it anything — a file path, a URL, pasted text, or just describe what you want reviewed and it'll search your codebase to find it.
 
+## How it works
+
+1. **Pick personalities** — Picks 3-5 famous, opinionated thinkers whose views are relevant to your work and who will genuinely disagree with each other. Reviewing a landing page? You might get Ogilvy, Godin, and Dunford. Pricing strategy? Thiel vs Ries. Each personality is deeply researched and built to react in character.
+2. **Split personalities** — Launches all personalities in parallel. Each reacts independently with specific, artifact-grounded feedback.
+3. **Debate conclusions** — Spots true clashes between personalities. Brings them back for one round to concede, push back, or evolve.
+4. **Synthesize results** — Synthesizes everything into a tight summary with prioritized actions. Optionally saves the full debate to a file.
+
 ## Example personalities
 
 **Reviewing a crossword prompt:**
@@ -67,13 +74,6 @@ copy length vs. scannability | two CTAs
 ```
 
 You approve the lineup (or swap personalities), then the split runs and delivers a synthesis.
-
-## How it works
-
-1. **Pick personalities** — Picks 3-5 famous, opinionated thinkers whose views are relevant to your work and who will genuinely disagree with each other. Reviewing a landing page? You might get Ogilvy, Godin, and Dunford. Pricing strategy? Thiel vs Ries. Each personality is deeply researched and built to react in character.
-2. **Split personalities** — Launches all personalities in parallel. Each reacts independently with specific, artifact-grounded feedback.
-3. **Debate conclusions** — Spots true clashes between personalities. Brings them back for one round to concede, push back, or evolve.
-4. **Synthesize results** — Synthesizes everything into a tight summary with prioritized actions. Optionally saves the full debate to a file.
 
 ## Design
 
