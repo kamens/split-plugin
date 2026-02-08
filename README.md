@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="split-img-small.png" alt="Split" width="500" />
+</div>
+
 # Split Plugin
 
 A Claude Code plugin that splits into multiple famous, opinionated personalities to debate your work. They react independently, clash where they disagree, fight it out, and deliver a sharp synthesis.
@@ -10,8 +14,6 @@ A Claude Code plugin that splits into multiple famous, opinionated personalities
 ```
 
 Then restart Claude Code.
-
-<img src="split-img-small.png" alt="Split" width="600" />
 
 ## Usage
 
