@@ -1,0 +1,13 @@
+{
+  "name": "kamens-split",
+  "owner": {
+    "name": "kamens"
+  },
+  "plugins": [
+    {
+      "name": "split",
+      "source": ".",
+      "description": "Split into multiple famous, opinionated personalities that debate each other before responding"
+    }
+  ]
+}
