@@ -4,7 +4,7 @@ description: >-
   Split into multiple famous, opinionated personalities. They each react to
   your work independently, clash where they disagree, get one round to fight it
   out, and deliver a sharp synthesis.
-argument-hint: "[artifact or file path]"
+argument-hint: "[content to be discussed by split personalities]"
 disable-model-invocation: true
 ---
 
@@ -42,19 +42,27 @@ NEVER expose implementation details to the user. The user should never see or he
 
 ### Step 0: Get the Artifact
 
-The argument above is what the user provided. It could be:
-- A file path → read it with the Read tool
-- Inline text → use it directly
-- Nothing → ask for something concrete
+Your job is to figure out what the user wants the personalities to react to, then get the full text of that artifact. Use your judgment — people will refer to artifacts in all sorts of ways:
 
-If no artifact is provided or the input is empty, say:
+- **File paths** → read them
+- **URLs** → fetch them with WebFetch
+- **Pasted text** (paragraphs, drafts, copy) → use directly
+- **Descriptions of something in the codebase** ("my crossword prompt", "the pricing page", "the README") → search with Glob/Grep, find it, read it
+- **References to the conversation** ("the plan we just discussed", "that email draft above") → pull the relevant content from the conversation history
+- **A topic or question with enough specificity** ("our Series B fundraising strategy" when there's a doc in the repo) → search for it
+- **Multiple sources** ("compare our landing page with competitor.com/pricing") → gather all of them
+- **Nothing** → ask for something concrete
+
+Be resourceful. If the user gives you enough to find the artifact, go find it. Only ask when you genuinely have nothing to work with.
+
+When you find the artifact through search, briefly confirm what you found before proceeding ("Found `src/prompts/crossword.md` — splitting on that."). If you find multiple candidates, use AskUserQuestion to let the user pick.
+
+If the input is truly empty or too vague to act on:
 
 ```
 I need something concrete to split on — a draft, a plan, a
 decision with specifics. What should the personalities react to?
 ```
-
-Then stop and wait. If a file path is given, read it. If the file doesn't exist, tell the user and ask again.
 
 Store the full artifact text — every agent will need it.
 
