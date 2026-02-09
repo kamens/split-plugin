@@ -4,7 +4,7 @@
 
 # Split Plugin
 
-A Claude Code plugin that splits into multiple famous, opinionated personalities to debate your work. They react independently, clash where they disagree, fight it out, and deliver a sharp synthesis.
+A Claude Code plugin that splits into multiple famous, opinionated personalities to debate your work. They react independently, clash where they disagree, fight it out, and deliver a sharp synthesis. More: [kamens.com/blog/split-plugin](https://kamens.com/blog/split-plugin)
 
 ## Install
 
@@ -82,3 +82,5 @@ You approve the lineup (or swap personalities), then the split runs and delivers
 The personalities aren't generic archetypes. They're real, well-known thinkers selected for the specific tensions in your artifact. The skill picks minds in pairs that predictably disagree, so the debate produces genuine insight rather than a list of suggestions.
 
 Round 2 only happens when there are true clashes — mutually exclusive recommendations. If the personalities agree, that's a valid outcome.
+
+[kamens.com/blog/split-plugin](https://kamens.com/blog/split-plugin)
