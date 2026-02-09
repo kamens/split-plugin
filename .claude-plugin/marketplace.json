@@ -6,10 +6,7 @@
   "plugins": [
     {
       "name": "split",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/kamens/split-plugin.git"
-      },
+      "source": "./plugins/split",
       "description": "Split into multiple famous, opinionated personalities that debate each other before responding"
     }
   ]
