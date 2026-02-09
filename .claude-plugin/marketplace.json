@@ -7,8 +7,8 @@
     {
       "name": "split",
       "source": {
-        "source": "github",
-        "repo": "kamens/split-plugin"
+        "source": "url",
+        "url": "https://github.com/kamens/split-plugin.git"
       },
       "description": "Split into multiple famous, opinionated personalities that debate each other before responding"
     }
