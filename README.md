@@ -77,10 +77,6 @@ copy length vs. scannability | two CTAs
 
 You approve the lineup (or swap personalities), then the split runs and delivers a synthesis.
 
-## Design
-
-The personalities aren't generic archetypes. They're real, well-known thinkers selected for the specific tensions in your artifact. The skill picks minds in pairs that predictably disagree, so the debate produces genuine insight rather than a list of suggestions.
-
-Round 2 only happens when there are true clashes — mutually exclusive recommendations. If the personalities agree, that's a valid outcome.
+## Read more
 
 [kamens.com/blog/split-plugin](https://kamens.com/blog/split-plugin)
